@@ -38,3 +38,15 @@ for pattern, case_sensitive, expected in DATAS_SHIFT:
 for text, pattern, case_sensitive, expected in DATAS_SEARCH:
     result = search(text, pattern, case_sensitive=case_sensitive)
     assert expected==result, f"La recherche de '{pattern}' dans '{text}', (case_sensitive = {case_sensitive}) aurait du être {expected} mais c'est {result}."
+    
+    
+roman_file = open("le_meilleur_des_mondes.txt","r",encoding='utf8')
+roman = roman_file.read()
+data = roman.replace('\n', ' ')
+motif = 'marsien'
+results = naive_search(roman, motif, case_sensitive=False)
+print(len(results))
+for result in results :
+    print(data[result-10:result+len(motif)+10])
+
+    
